@@ -3,6 +3,9 @@ import "./globals.css";
 import HeaderPage from "@/components/Header";
 import Navbar from "@/components/Navbar";
 
+import { Suspense } from 'react'
+import Marquee from "@/components/Marquee";
+
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
 });
@@ -21,8 +24,14 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <HeaderPage></HeaderPage>
-        <Navbar></Navbar>
-        <main>{children}</main>
+        <Suspense fallback={<p>Loading categories...</p>}>
+          <Navbar />
+        </Suspense>
+        <Suspense fallback={<p>Loading Headlines...</p>}>
+        <Marquee></Marquee>
+        </Suspense>
+        
+        <main className="bg-[#F0F5F0]">{children}</main>
       </body>
     </html>
   );

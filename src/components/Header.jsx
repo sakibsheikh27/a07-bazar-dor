@@ -1,11 +1,13 @@
-
+"use client";
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const HeaderPage = () => {
-    const date = new Date().toLocaleDateString('bn-BD', {
-        dateStyle: 'full'
-    });
+    const [date, setDate] = useState(''); 
+
+    useEffect(() => { 
+        const currentDate = new Date().toLocaleDateString('bn-BD', { dateStyle: 'full' }); setDate(currentDate); 
+    }, []);
 
     return (
         <div>
@@ -13,7 +15,7 @@ const HeaderPage = () => {
                 <div className='flex gap-5'>
                     <Image
                         className='bg-green-700 text-gray-400 p-2 rounded-md'
-                        src={'/assets/logo-icon.png'}
+                        src={'/images/logo-icon.png'}
                         width={50} height={50}
                         alt='Image of logo'>
                     </Image>
