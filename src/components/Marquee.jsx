@@ -6,12 +6,13 @@ import "react-marquee-text/dist/styles.css"
 const Marquee = async () => {
     const res = await fetch(process.env.ALL_PRODUCTS_API_LINK);
     if (!res.ok) {
-    throw new Error('Failed to fetch products');
-}
+        throw new Error('Failed to fetch products');
+    }
 
     const data = await res.json();
-    console.log(data)
-    
+    console.log(data);
+
+
     return (
         <div>
             <MarqueeText className='my-3' direction='right' duration={15}>
@@ -21,8 +22,23 @@ const Marquee = async () => {
                             <span>{headline.image}</span>
                             <span>{headline.nameBn}</span>
                             <span>{headline.today.toLocaleString('bn-BD')}</span>
-                            <span>{headline.change.pct.toLocaleString('bn-BD')}</span>
-                            <span><LuPercent /></span>
+                            <span
+                                className={
+                                    Number(headline.change.pct) > 0
+                                        ? 'text-green-600'
+                                        : Number(headline.change.pct) < 0
+                                            ? 'text-red-600'
+                                            : 'text-gray-500'
+                                }
+                            >
+                                {Number(headline.change.pct) > 0
+                                    ? '▲'
+                                    : Number(headline.change.pct) < 0
+                                        ? '▼'
+                                        : ''}
+
+                                {Math.abs(Number(headline.change.pct)).toLocaleString('bn-BD')}%
+                            </span>
                             <span className='border-gray-100'>|</span>
                         </div>
                     ))}
