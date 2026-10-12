@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 
 import { Suspense } from 'react'
 import Marquee from "@/components/Marquee";
+import Footer from "@/components/Footer";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
@@ -32,6 +33,9 @@ export default function RootLayout({ children }) {
         </Suspense>
         
         <main className="bg-[#F0F5F0]">{children}</main>
+        <Suspense fallback={<p>Loading Headlines...</p>}>
+        <Footer></Footer>
+        </Suspense>
       </body>
     </html>
   );

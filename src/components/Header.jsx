@@ -1,29 +1,32 @@
 "use client";
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const HeaderPage = () => {
-    const [date, setDate] = useState(''); 
+    const [date, setDate] = useState('');
 
-    useEffect(() => { 
-        const currentDate = new Date().toLocaleDateString('bn-BD', { dateStyle: 'full' }); setDate(currentDate); 
+    useEffect(() => {
+        const currentDate = new Date().toLocaleDateString('bn-BD', { dateStyle: 'full' }); setDate(currentDate);
     }, []);
 
     return (
         <div>
             <div className='flex justify-between items-center w-full max-w-7xl mx-auto my-4'>
-                <div className='flex gap-5'>
-                    <Image
-                        className='bg-green-700 text-gray-400 p-2 rounded-md'
-                        src={'/images/logo-icon.png'}
-                        width={50} height={50}
-                        alt='Image of logo'>
-                    </Image>
-                    <div>
-                        <h2 className='font-bold'>বাজার দর</h2>
-                        <small>{date}</small>
+                <Link href={'/'}>
+                    <div className='flex gap-5'>
+                        <Image
+                            className='bg-green-700 text-gray-400 p-2 rounded-md'
+                            src={'/images/logo-icon.png'}
+                            width={50} height={50}
+                            alt='Image of logo'>
+                        </Image>
+                        <div>
+                            <h2 className='font-bold'>বাজার দর</h2>
+                            <small>{date}</small>
+                        </div>
                     </div>
-                </div>
+                </Link>
                 <div>
                     <button className='mx-5'>সাইন ইন</button>
                     <button className='bg-green-700 px-3 py-2 rounded-md text-white'>সাইন আপ</button>

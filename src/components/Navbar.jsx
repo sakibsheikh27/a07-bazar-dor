@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Navbar = async () => {
@@ -7,10 +8,10 @@ const Navbar = async () => {
         <div>
             <div className='flex gap-5 max-w-7xl mx-32 my-3'>
                 {categories.map((category) => (
-                    <div key={category.id}>
+                    <Link key={category.id} href={`/category/${category.slug}`}>
                         {category.icon}
                         {category.nameBn}
-                    </div>
+                    </Link>
                 ))}
             </div>
             <hr className='border-gray-100' />
