@@ -27,7 +27,9 @@ const IncreasePrice = async () => {
                                             ? 'প্রতি পিস'
                                             : product.unit === 'dozen'
                                                 ? 'প্রতি ডজন'
-                                                : product.unit}
+                                                : product.unit === "litre"
+                                        ? "লিটার"
+                                        : category.unit}
                                 </small>
                             </div>
                         </div>

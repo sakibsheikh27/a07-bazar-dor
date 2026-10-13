@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const AllProducts = async () => {
@@ -11,7 +12,8 @@ const AllProducts = async () => {
             </div>
             <div className='max-w-7xl mx-auto grid grid-cols-3 gap-5'>
                 {data.map(product => (
-                    <div
+                    <Link
+                        href={`/product/${product.id}`}
                         className='border-2 border-gray-200 bg-white rounded-2xl p-3'
                         key={product.id}>
                         <div className='flex gap-3'>
@@ -25,7 +27,9 @@ const AllProducts = async () => {
                                             ? 'প্রতি পিস'
                                             : product.unit === 'dozen'
                                                 ? 'প্রতি ডজন'
-                                                : product.unit}
+                                                : product.unit === "litre"
+                                                    ? "লিটার"
+                                                    : category.unit}
                                 </small>
                             </div>
                         </div>
@@ -36,8 +40,8 @@ const AllProducts = async () => {
 
                                 <h3><span className='text-2xl font-bold'>{product.today.toLocaleString('bn-BD')}</span> টাকা</h3>
                             </div>
-                            <div 
-                            className={
+                            <div
+                                className={
                                     Number(product.change.pct) > 0
                                         ? 'text-green-600'
                                         : Number(product.change.pct) < 0
@@ -51,10 +55,10 @@ const AllProducts = async () => {
                                         ? '▼'
                                         : '-'}
 
-                                {(Number(product.change.pct)).toLocaleString('bn-BD')}% 
+                                {(Number(product.change.pct)).toLocaleString('bn-BD')}%
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
