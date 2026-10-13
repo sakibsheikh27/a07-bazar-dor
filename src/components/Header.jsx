@@ -28,8 +28,8 @@ const HeaderPage = () => {
                     </div>
                 </Link>
                 <div>
-                    <button className='mx-5'>সাইন ইন</button>
-                    <button className='bg-green-700 px-3 py-2 rounded-md text-white'>সাইন আপ</button>
+                    <Link href={'/sign-in'} className='mx-5'>সাইন ইন</Link>
+                    <Link href={'/sign-up'} className='bg-green-700 px-3 py-2 rounded-md text-white'>সাইন আপ</Link>
                 </div>
             </div>
             <hr className='border-gray-100' />
