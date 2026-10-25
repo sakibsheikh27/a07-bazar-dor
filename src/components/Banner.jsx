@@ -39,7 +39,7 @@ const Banner = () => {
             width={300}
             height={300}
             alt="Banner image"
-            className="w-full max-w-[250px] sm:max-w-[300px] h-auto object-contain"
+            className="w-full max-w-62.5 sm:max-w-75 h-auto object-contain"
         />
     </div>
 
