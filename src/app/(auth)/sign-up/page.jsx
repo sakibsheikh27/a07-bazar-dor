@@ -12,26 +12,64 @@ import {
     Label,
     TextArea,
     TextField,
+    Toast,
 } from "@heroui/react";
-import { signUp } from '@/lib/auth-client';
-
-const onSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+import { signIn, signUp } from '@/lib/auth-client';
+import Link from 'next/link';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 
-    const { data: resData, error } = await signUp.email({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-    });
-
-    console.log(data);
-    // alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
-};
 
 const SignUp = () => {
+    const router = useRouter();
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData.entries());
+
+
+        const { data: resData, error } = await signUp.email({
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            callbackURL: '/',
+        });
+
+
+
+        toast.success('sign-Up sucdessfull!');
+
+        router.push('/');
+        router.refresh();
+
+
+    };
+    const handleGoogleSignIn = async () => {
+        const { error } = await signIn.social({
+            provider: 'google',
+            callbackURL: '/',
+        });
+
+        if (error) {
+            toast.error('Google sign-in failed!');
+        }
+
+        toast.success('Google sign-in sucdessfull!');
+    };
+
+    const handleGithubSignIn = async () => {
+        const { error } = await signIn.social({
+            provider: 'github',
+            callbackURL: '/',
+        });
+
+        if (error) {
+            toast.error('Github sign-in failed!');
+        }
+
+        toast.success('Github sign-in successfull!');
+    };
     return (
         <div>
             <div className='text-center my-20'>
@@ -104,6 +142,19 @@ const SignUp = () => {
                             রিসেট
                         </Button>
                     </div>
+                    <Button
+                        type="button"
+                        onClick={handleGoogleSignIn}
+                    >
+                        Google দিয়ে সাইন ইন করুন
+                    </Button>
+                    <Button
+                        type="button"
+                        onClick={handleGithubSignIn}
+                    >
+                        Github দিয়ে সাইন ইন করুন
+                    </Button>
+                    <Link href={'/sign-in'} className='text-sm text-green-500'>অ্যাকাউন্ট আছে? <span className='underline'>লগ ইন করুন</span></Link>
                 </Form>
             </div>
         </div>

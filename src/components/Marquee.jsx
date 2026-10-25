@@ -14,7 +14,7 @@ const Marquee = async () => {
 
 
     return (
-        <div>
+        <div className="">
             <MarqueeText className='my-3' direction='right' duration={15}>
                 <div className='flex items-center'>
                     {data.map(headline => (

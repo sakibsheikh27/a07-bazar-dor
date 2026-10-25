@@ -7,6 +7,9 @@ import { Suspense } from 'react'
 import Marquee from "@/components/Marquee";
 import Footer from "@/components/Footer";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
 });
@@ -24,17 +27,20 @@ export default function RootLayout({ children }) {
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <HeaderPage></HeaderPage>
-        <Suspense fallback={<p>Loading categories...</p>}>
-          <Navbar />
-        </Suspense>
-        <Suspense fallback={<p>Loading Headlines...</p>}>
-        <Marquee></Marquee>
-        </Suspense>
-        
+        <div className="sticky top-0 z-50 bg-white">
+          <HeaderPage></HeaderPage>
+          <Suspense fallback={<p>Loading categories...</p>}>
+            <Navbar />
+          </Suspense>
+          <Suspense fallback={<p>Loading Headlines...</p>}>
+            <Marquee></Marquee>
+          </Suspense>
+        </div>
+
         <main className="bg-[#F0F5F0]">{children}</main>
+        <ToastContainer position="top-right" autoClose={2000} />
         <Suspense fallback={<p>Loading Headlines...</p>}>
-        <Footer></Footer>
+          <Footer></Footer>
         </Suspense>
       </body>
     </html>
