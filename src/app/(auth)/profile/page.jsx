@@ -28,7 +28,7 @@ const ProfilePage = () => {
         });
     };
     const handleClick = () => {
-        toast.success('নাম পরিবর্তন হয়েছে')
+        toast.success('Your name have changed');
     }
     return (
         <div>
