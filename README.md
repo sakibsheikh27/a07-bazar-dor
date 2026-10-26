@@ -1,7 +1,5 @@
 বাজার দর (BazarDor)
 
-🇧🇩 Your Daily Market Price Tracker
-
 বাজার দর (BazarDor) is a web application that helps users check and compare the latest prices of daily essential commodities in Bangladesh. It provides an easy way to explore product prices, monitor price changes, and view market-wise price information through a user-friendly Bengali interface.
 
 🚀 Technologies Used
